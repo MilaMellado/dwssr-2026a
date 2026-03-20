@@ -1,5 +1,9 @@
-var express = require('express');
-var router = express.Router();
+//var express = require('express');
+import express from 'express';
+//var router = express.Router();
+const router = express.Router();
+
+
 
 
 router.get('/', function(req, res, next) {
@@ -11,4 +15,5 @@ router.get('/', function(req, res, next) {
 
 });
 
-module.exports = router;
+//module.exports = router;
+export default router;

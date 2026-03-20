@@ -14,4 +14,16 @@ Dentro de los frameworks para crear servidores web para Node tenemos:
 
 Express es un _framework_ para Node, minimo, flexible no impositivo tanto en el flujo de trabajo como en la arquitectura del proyecto.
 
-El  presente proyecto esta desarrollado en ExpressJs
+El  presente proyecto esta desarrollado en ExpressJs.
+
+# 📦 ESM
+
+Los ECMAScript Modules (ESM) representa el estándar nativo para organizar y modularizar código de JavaScript.
+El Express-Generator genera un proyecto usando el antiguo estándar llamado _CommonJS_ que usa las sentencias
+`require` en nuevo estándar usa `export/import`.
+
+Migrar a ESM ofrece las siguientes ventajas:
+- Sintaxis moderna y consistente
+- Mejor analisis estático**
+- Importaciones asincronas con `import()`
+- Es el futuro del ecosistema
