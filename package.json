@@ -1,12 +1,11 @@
 {
   "name": "dwssr-2026a",
   "version": "0.0.0",
-  "type":"module",
+  "type": "module",
   "private": true,
   "scripts": {
-    "start": "DEBUG=dwssr:* node ./bin/www"
+    "start": "DEBUG=dwssr:* nodemon ./bin/www"
   },
-
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -14,5 +13,8 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
