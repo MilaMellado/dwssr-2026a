@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "DEBUG=dwssr:* nodemon ./bin/www"
+    "start": "DEBUG=dwssr:* nodemon ./server/bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

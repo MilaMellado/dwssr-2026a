@@ -33,3 +33,8 @@ Migrar a ESM ofrece las siguientes ventajas:
 [Nodemon](https://nodemon.io/) es un paquete que actua como un _WRAPPER_ (envoltorio) para Node.js
 Su función es observar archivos en el directorio de tu proyecto y reiniciar
 automáticamente la aplicación cuando detecta cambios guardados.
+
+# ✂️ Aliases
+
+Los **import alisases** tambien conocidos como _path alisases_ o _module aliases_ son atajos o alias que
+podemos configurar para simplificar la forma en que importamos módulos en nuestra aplicación.
