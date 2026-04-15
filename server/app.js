@@ -4,12 +4,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import hbs from 'hbs';
 
 
 // Importar las rutas
 import indexRouter from '#routes/index.js';
 import usersRouter from '#routes/users.js';
 import authorRouter from '#routes/author.js';
+
+// Importando el registrador de Helpers
+import { registerViteHelper } from '#lib/vite.js';
 
 // recreando variables de path
 const __filename = fileURLToPath(import.meta.url)
@@ -21,13 +25,24 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// Registrando el Helper para el ENGINE
+registerViteHelper(hbs);
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-console.log("Ruta:    " + path.join(__dirname, '../public'));
 
+// Archivos estaticos de Vite
+if(process.env.NODE_ENV === 'production') {
+app.use(express.static(path.join(__dirname, '..','dist')));
+}
+
+// Archivos estaticos del back-end
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Registrando las rutas
 app.use(['/','/index'], indexRouter);
 app.use('/users', usersRouter);
 app.use('/author', authorRouter);
