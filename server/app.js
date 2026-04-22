@@ -13,7 +13,7 @@ import usersRouter from '#routes/users.js';
 import authorRouter from '#routes/author.js';
 
 // Importando el registrador de Helpers
-import { registerViteHelper } from '#lib/vite.js';
+import { registerViteHelper } from './lib/vite.js';
 
 // recreando variables de path
 const __filename = fileURLToPath(import.meta.url)
