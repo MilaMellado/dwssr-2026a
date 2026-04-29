@@ -1,0 +1,13 @@
+body {
+    padding: 50px;
+    font: 14px "Lucinda Grande", Helvetica;
+}
+
+h1 {
+    color: teal;
+}
+
+button, p {
+    margin-top: 20px;
+}
+
