@@ -13,12 +13,12 @@ const __rootdir = path.resolve(process.cwd());
 
 // creando la ruta del directorio de logs en
 // la raiz del proyecto
-const logDir = path.join(__rootdir, "logs");
+const logsDir = path.join(__rootdir, "logs");
 
 // rutina que crea la carpeta donde iran los logs solo
 // en caso de no existir
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir, { recursive: true });
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir, { recursive: true });
 }
 
 // definiendo esquema de colores
@@ -92,3 +92,39 @@ const options = {
     format: myFileFormat,
   },
 };
+
+// creando una instancia del logger
+/*
+Usaremos un transport diario (DailyRotateFile) para el log principal,
+esto facilita la retencion por fecha y la compresion de archivos
+
+Para los demas logs mantenemos archivos separados 
+*/
+
+const logger = winston.createLogger({
+  transports: [
+    //log principal con rotacion por fecha
+    new DailyRotateFile(options.dailyRotateFile),
+    //archivo legible para humanos
+    new winston.transports.File(options.readableFile),
+    // log de errores en un archivo por separado
+    new winston.transports.File(options.errorFile),
+    // log para consola de desarrollo (colores y formatos)
+    new winston.transports.Console(options.console),
+  ],
+  //Captura de excepciones
+  exceptionHandlers: [
+    new winston.transports.File({
+      filename: path.join(logsDir, "exceptions.log"),
+    }),
+  ],
+  rejectionHandlers: [
+    new winston.transports.File({
+      filename: path.join(logsDir, "rejections.log"),
+    }),
+  ],
+  exitOnError: false,
+});
+
+//Finalmenteexportamos el logger
+export default logger;
