@@ -20,6 +20,7 @@ import { registerViteHelper } from "./lib/vite.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+logger.info("Creando la instancia de express.js");
 var app = express();
 
 // view engine setup
@@ -29,6 +30,7 @@ app.set("view engine", "hbs");
 // Registrando el Helper para el ENGINE
 registerViteHelper(hbs);
 
+logger.info("Configurando el middleware de morgan");
 //Redirigiendo el flujo de logs de morgan a winston
 // morgan -> [logs] -> winston -> transportes [consola, archivos]
 app.use(
@@ -57,12 +59,14 @@ app.use("/author", authorRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+  logger.warn(`Se consulto la ruta no encontrada ${req.originalUrl}`);
   next(createError(404));
 });
 
 // error handler
 // eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
+  logger.error(`Error: ${err.status || 500} -> ${err.message} `);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
